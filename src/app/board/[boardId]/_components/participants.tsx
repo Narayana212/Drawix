@@ -33,6 +33,7 @@ export default function Participants() {
             fallback={currentUser.info?.name?.[0]}
           />
         )}
+        
           {hasMoreUsers && (
           <UserAvatar
             name={`${users.length - MAX_SHOWN_USERS} more`}
