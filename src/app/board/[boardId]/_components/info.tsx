@@ -66,7 +66,7 @@ export const Info = ({
               "font-semibold text-xl ml-2 text-black",
               font.className,
             )}>
-              Board
+              Drawix
             </span>
           </Link>
         </Button>
