@@ -1,6 +1,6 @@
 # Project Documentation
 
-## Visual Diagrams
+## UML Diagrams
 
 - **Sequence Diagram:**  
   Visualize the sequence of interactions between system components.  
