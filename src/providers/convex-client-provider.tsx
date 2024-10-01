@@ -13,6 +13,12 @@ const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL!;
 
 const convex = new ConvexReactClient(convexUrl);
 
+/**
+ * Provides a Convex client with Clerk authentication wrapper for the application
+ * @param {Object} props - The component props
+ * @param {React.ReactNode} props.children - The child components to be rendered within the provider
+ * @returns {JSX.Element} A component tree wrapped with authentication and Convex client providers
+ */
 export const ConvexClientProvider = ({
   children,
 }: ConvexClientProviderProps) => {
