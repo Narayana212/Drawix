@@ -21,6 +21,18 @@ const COLORS = [
   "#DB2777"
 ];
 
+```
+/**
+ * Merges and combines CSS class names using clsx and twMerge utilities
+ * @param {...ClassValue[]} inputs - An array of class values to be merged
+ /**
+  * Converts a connection ID to a color string.
+  * @param {number} connectionId - The unique identifier for the connection.
+  * @returns {string} The color string associated with the connection ID.
+  */
+ * @returns {string} A string of combined and merged CSS class names
+ */
+```
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -29,6 +41,12 @@ export function connectionIdToColor(connectionId: number): string {
   return COLORS[connectionId % COLORS.length];
 };
 
+/**
+ * Converts a pointer event to canvas coordinates based on the camera position
+ * @param {React.PointerEvent} e - The pointer event object
+ * @param {Camera} camera - The camera object containing x and y coordinates
+ * @returns {Object} An object with x and y properties representing the canvas point
+ */
 export function pointerEventToCanvasPoint(
   e: React.PointerEvent,
   camera: Camera,
@@ -39,10 +57,22 @@ export function pointerEventToCanvasPoint(
   };
 };
 
+/**
+ * Converts a Color object to a CSS hexadecimal color string
+ * @param {Color} color - An object containing r, g, and b properties representing red, green, and blue values (0-255)
+ * @returns {string} A CSS hexadecimal color string in the format "#RRGGBB"
+ */
 export function colorToCss(color: Color) {
   return `#${color.r.toString(16).padStart(2, "0")}${color.g.toString(16).padStart(2, "0")}${color.b.toString(16).padStart(2, "0")}`;
 }
 
+/**
+ * Resizes the given bounds based on the specified corner and point.
+ * @param {XYWH} bounds - The original bounds to be resized.
+ * @param {Side} corner - The corner or side of the bounds to be adjusted.
+ * @param {Point} point - The new point to which the specified corner should be moved.
+ * @returns {XYWH} The resized bounds.
+ */
 export function resizeBounds(
   bounds: XYWH, 
   corner: Side, 
@@ -78,6 +108,14 @@ export function resizeBounds(
   return result;
 };
 
+/**
+ * Finds layers that intersect with a given rectangle.
+ * @param {readonly string[]} layerIds - Array of layer IDs to check for intersection.
+ * @param {ReadonlyMap<string, Layer>} layers - Map of layer IDs to Layer objects.
+ * @param {Point} a - First point defining the rectangle.
+ * @param {Point} b - Second point defining the rectangle.
+ * @returns {string[]} Array of layer IDs that intersect with the given rectangle.
+ */
 export function findIntersectingLayersWithRectangle(
   layerIds: readonly string[],
   layers: ReadonlyMap<string, Layer>,
@@ -115,12 +153,24 @@ export function findIntersectingLayersWithRectangle(
   return ids;
 };
 
+/**
+ * Determines the contrasting text color (black or white) based on the background color.
+ * @param {Color} color - The background color object containing r, g, b values.
+ * @returns {string} The contrasting text color: "black" or "white".
+ */
 export function getContrastingTextColor(color: Color) {
   const luminance = 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
 
   return luminance > 182 ? "black" : "white";
 };
 
+/**
+ * Transforms an array of pen points into a PathLayer object.
+ * @param {number[][]} points - An array of points, where each point is an array of [x, y, pressure].
+ * @param {Color} color - The fill color for the path.
+ * @returns {PathLayer} A PathLayer object representing the path drawn by the points.
+ * @throws {Error} If the input array has less than 2 points.
+ */
 export function penPointsToPathLayer(
   points: number[][],
   color: Color,
@@ -162,10 +212,30 @@ export function penPointsToPathLayer(
     height: bottom - top,
     fill: color,
     points: points
+      /**
+       * Maps an array of touch point coordinates and pressure to adjusted coordinates relative to a container
+       * @param {Array} entry - An array containing [x, y, pressure] values for a touch point
+       * @returns {Array} An array with adjusted [x, y, pressure] values relative to the container's top-left corner
+       */
       .map(([x, y, pressure]) => [x - left, y - top, pressure]),
   };
 };
 
+/**
+ * Generates an SVG path string from an array of stroke coordinates.
+ * @param {number[][]} stroke - An array of [x, y] coordinate pairs representing the stroke.
+ * @returns {string} A string representing the SVG path data.
+ ```
+ /**
+  * Processes an array of coordinate pairs to create a new array with midpoints.
+  * @param {Array} acc - The accumulator array to store the processed coordinates.
+  * @param {Array} [x0, y0] - The current coordinate pair being processed.
+  * @param {number} i - The index of the current coordinate pair in the array.
+  * @param {Array} arr - The original array of coordinate pairs.
+  * @returns {Array} The updated accumulator array with new coordinates and midpoints.
+  */
+ ```
+ */
 export function getSvgPathFromStroke(stroke: number[][]) {
   if (!stroke.length) return "";
 
